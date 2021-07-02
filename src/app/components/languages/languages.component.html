@@ -1,0 +1,46 @@
+<body>
+    <div class="translate">
+        <div class="container">
+            <div class="justify-content-center form-group">
+                <div class="justify-content-between row">
+                    <select style="margin-left: 10rem; background-color: cornsilk; color: purple;"
+                        class="form-select form-select-lg mb-3" [(ngModel)]="selectedFrom" (ngModelChange)="getTo()"
+                        class="form-conrtol">
+                        <option *ngFor="let fo of from" value={{fo}}>{{fo}}</option>
+                    </select>
+                    <img style="width: 45px;" src="./assets/img/right-arrow.png">
+                    <select style="margin-right: 10rem; background-color: cornsilk; color: purple;"
+                        class="form-select form-select-lg mb-3" [(ngModel)]="selectedTo" class="form-conrtol">
+                        <option value=""> - </option>
+                        <option *ngFor="let t of to" value={{t}}>{{t}}</option>
+                    </select>
+                </div>
+                <div *ngIf="warning" style="margin-top: 3rem;" class="alert alert-danger" role="alert">
+                    Nem választottál ki nyelvet!
+                  </div>
+                  <div *ngIf="warning2" style="margin-top: 3rem;" class="alert alert-danger" role="alert">
+                    Ilyen szó nem létezik a fordításban!
+                  </div>
+                  <div *ngIf="warning3" style="margin-top: 3rem;" class="alert alert-danger" role="alert">
+                    Nem lett semmilyen szó sem megadva!
+                  </div>
+                <div style="padding-top: 15rem;" class="row justify-content-between">
+                    <input placeholder="Írd ide melyik szót szeretnéd lefordítani" class="mx-1 col-5 form-control" [(ngModel)]="word">
+                    <button class="btn btn-primary" (click)="translate()">Translate</button>
+                    <input placeholder="Itt van a lefordított változata" class="mx-1 col-5 form-control" [(ngModel)]="name">
+                </div>
+            </div>
+            <div *ngIf="translated" class="justify-content-between row">
+                <div class="card col-6">
+                    <div class="card-body">
+                        <h5 class="card-title">{{sTo}}</h5>
+                        <div *ngFor="let s of sToList">
+                            <h2>{{s}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
